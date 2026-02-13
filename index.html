@@ -1775,6 +1775,8 @@
             let text = msgEl.innerText.replace(/\s*[🔊]?\s*Écouter\s*$/i, '').trim();
             text = text.replace(/\*+/g, '');
             text = text.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '');
+            // Lire les numeros de telephone chiffre par chiffre (ex: 77 650 69 64)
+            text = text.replace(/\b(\d[\d\s]{6,})\b/g, m => m.replace(/\d/g, d => d + ', '));
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = 'fr-FR';
             utterance.rate = 1;
