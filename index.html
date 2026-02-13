@@ -1683,7 +1683,7 @@
             'wave': 'wave',
             'portefeuille': 'wallet', 'wallet': 'wallet'
         };
-        const DAKAR_DEFAULT_COORDS = { latitude: 14.6937, longitude: -17.4441 };
+        const DAKAR_DEFAULT_COORDS = { lat: 14.6937, lng: -17.4441 };
         const savedReservationKeys = new Set();
 
         function parseReservationFromText(text) {
@@ -1761,11 +1761,14 @@
                     depart: parsed.depart || 'Position non precisee',
                     destination: parsed.destination,
                     departCoords: DAKAR_DEFAULT_COORDS,
+                    destinationCoords: DAKAR_DEFAULT_COORDS,
                     destCoords: DAKAR_DEFAULT_COORDS,
                     dateHeure: dateHeure,
                     clientTelephone: phone,
                     telephone: phone,
+                    clientNom: 'Client Web',
                     nomClient: 'Client Web',
+                    vehiculeType: typeVehicule,
                     typeVehicule: typeVehicule,
                     modePaiement: modePaiement,
                     prixEstime: prixEstime,
