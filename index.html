@@ -1695,7 +1695,7 @@
             const messages = document.getElementById('khadijaMessages');
             const div = document.createElement('div');
             div.className = 'khadija-msg bot';
-            const formatted = text.replace(/\n/g, '<br>');
+            const formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
             div.innerHTML = formatted + '<br><button class="msg-listen" onclick="speakText(this.parentElement)"><i class="fas fa-volume-up"></i> \u00c9couter</button>';
             messages.appendChild(div);
             messages.scrollTop = messages.scrollHeight;
@@ -1773,6 +1773,7 @@
             if (!window.speechSynthesis) return;
             window.speechSynthesis.cancel();
             let text = msgEl.innerText.replace(/\s*[🔊]?\s*Écouter\s*$/i, '').trim();
+            text = text.replace(/\*+/g, '');
             text = text.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '');
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = 'fr-FR';
