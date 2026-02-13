@@ -1756,11 +1756,12 @@
 
             const dateHeure = buildDateHeure(parsed.date, parsed.heure);
 
+            const realCoords = userGeoPosition || DAKAR_DEFAULT_COORDS;
             try {
                 const docRef = await db.collection('reservations').add({
                     depart: parsed.depart || 'Position non precisee',
                     destination: parsed.destination,
-                    departCoords: DAKAR_DEFAULT_COORDS,
+                    departCoords: realCoords,
                     destinationCoords: DAKAR_DEFAULT_COORDS,
                     destCoords: DAKAR_DEFAULT_COORDS,
                     dateHeure: dateHeure,
@@ -1797,6 +1798,16 @@
         let khadijaFirstOpen = true;
         let khadijaRecording = false;
         let khadijaRecognition = null;
+        let userGeoPosition = null;
+
+        // Demander la geolocalisation
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                pos => { userGeoPosition = { lat: pos.coords.latitude, lng: pos.coords.longitude }; },
+                () => { userGeoPosition = null; },
+                { enableHighAccuracy: true, timeout: 10000 }
+            );
+        }
 
         // Toggle chat modal
         function toggleKhadija() {
@@ -1883,7 +1894,7 @@
                         wantAudio: false,
                         walletBalance: 0,
                         userPhone: '',
-                        userPosition: 'Landing page',
+                        userPosition: userGeoPosition ? `${userGeoPosition.lat},${userGeoPosition.lng}` : 'Landing page',
                         platform: 'landing'
                     })
                 });
