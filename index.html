@@ -1,0 +1,1847 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Bourakh — Transport VTC Premium à Dakar</title>
+    <meta name="description" content="Al Bourakh, votre plateforme VTC premium à Dakar. Réservez un chauffeur privé en 30 secondes. Paiement Orange Money, Wave, Free Money. Disponible 24/7.">
+    <meta name="keywords" content="VTC Dakar, taxi Dakar, chauffeur privé Sénégal, Al Bourakh, transport premium Dakar">
+    <meta property="og:title" content="Al Bourakh — Transport VTC Premium à Dakar">
+    <meta property="og:description" content="Réservez un chauffeur privé en 30 secondes. Paiement mobile intégré. Disponible 24/7.">
+    <meta property="og:image" content="https://i.imgur.com/VtgG6pR.png">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="https://i.imgur.com/VtgG6pR.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ========== RESET & BASE ========== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1a1a2e;
+            background: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; }
+
+        /* ========== VARIABLES ========== */
+        :root {
+            --green: #00A854;
+            --green-dark: #008a44;
+            --yellow: #FECB00;
+            --red: #E30613;
+            --gradient: linear-gradient(135deg, #00A854, #00c464);
+            --gradient-warm: linear-gradient(135deg, #00A854, #FECB00);
+            --dark: #1a1a2e;
+            --gray-50: #f8f9fa;
+            --gray-100: #f1f3f5;
+            --gray-200: #e9ecef;
+            --gray-500: #868e96;
+            --gray-700: #495057;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.15);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --max-width: 1200px;
+        }
+
+        /* ========== UTILITIES ========== */
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray-500);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 48px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        .btn-primary {
+            background: var(--green);
+            color: #fff;
+        }
+        .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.6);
+        }
+        .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: #fff; }
+        .btn-dark {
+            background: var(--dark);
+            color: #fff;
+        }
+        .btn-dark:hover { background: #2d2d4a; transform: translateY(-2px); }
+
+        /* ========== ANIMATIONS ========== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all 0.3s ease;
+        }
+        .navbar.scrolled {
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-sm);
+            padding: 10px 0;
+        }
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-brand img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+        }
+        .nav-brand span {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .navbar.scrolled .nav-brand span { color: var(--dark); }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.85);
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--green);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .navbar.scrolled .nav-links a { color: var(--gray-700); }
+        .navbar.scrolled .nav-links a:hover { color: var(--green); }
+        .nav-cta {
+            background: var(--green);
+            color: #fff !important;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .nav-cta:hover { background: var(--green-dark); transform: translateY(-1px); }
+        .nav-cta::after { display: none !important; }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2.5px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .navbar.scrolled .hamburger span { background: var(--dark); }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        .mobile-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #0a2e1a 0%, #0d3d22 30%, #00A854 70%, #1a8a4a 100%);
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(ellipse, rgba(254,203,0,0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(to top, #fff, transparent);
+            pointer-events: none;
+        }
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            padding-top: 80px;
+        }
+        .hero-content h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+        .hero-content h1 .highlight {
+            background: var(--gradient-warm);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-content p {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 32px;
+            max-width: 480px;
+            line-height: 1.7;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(254,203,0,0.15);
+            border: 1px solid rgba(254,203,0,0.3);
+            color: var(--yellow);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-phone {
+            width: 280px;
+            height: 560px;
+            background: linear-gradient(145deg, #1a1a2e, #2d2d4a);
+            border-radius: 40px;
+            border: 3px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl), 0 0 80px rgba(0,168,84,0.2);
+            position: relative;
+        }
+        .hero-phone-screen {
+            position: absolute;
+            inset: 8px;
+            border-radius: 32px;
+            background: linear-gradient(180deg, #00A854, #008a44);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 24px;
+        }
+        .hero-phone-screen img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+        .hero-phone-screen .phone-title {
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .hero-phone-screen .phone-subtitle {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85rem;
+            text-align: center;
+        }
+        .phone-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 16px;
+            width: 100%;
+        }
+        .phone-card-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .phone-card-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--yellow);
+        }
+        .phone-card-line {
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255,255,255,0.3);
+            flex: 1;
+        }
+        .phone-card-line.short { flex: 0.6; }
+        .hero-float-card {
+            position: absolute;
+            background: rgba(255,255,255,0.97);
+            border-radius: var(--radius-sm);
+            padding: 14px 18px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark);
+            animation: float 3s ease-in-out infinite;
+        }
+        .hero-float-card.card-1 {
+            top: 15%;
+            right: -20px;
+            animation-delay: 0s;
+        }
+        .hero-float-card.card-2 {
+            bottom: 20%;
+            left: -20px;
+            animation-delay: 1.5s;
+        }
+        .float-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        .float-icon.green { background: rgba(0,168,84,0.12); color: var(--green); }
+        .float-icon.yellow { background: rgba(254,203,0,0.15); color: #d4a800; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* ========== SERVICES ========== */
+        .services {
+            padding: 100px 0;
+            background: #fff;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .service-card {
+            background: var(--gray-50);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .service-card:hover {
+            background: #fff;
+            border-color: var(--gray-200);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+        .service-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+        .service-icon.green { background: rgba(0,168,84,0.1); color: var(--green); }
+        .service-icon.yellow { background: rgba(254,203,0,0.15); color: #d4a800; }
+        .service-icon.blue { background: rgba(37,99,235,0.1); color: #2563eb; }
+        .service-icon.red { background: rgba(227,6,19,0.1); color: var(--red); }
+        .service-icon.purple { background: rgba(124,58,237,0.1); color: #7c3aed; }
+        .service-icon.teal { background: rgba(20,184,166,0.1); color: #14b8a6; }
+        .service-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .service-card p {
+            color: var(--gray-500);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        /* ========== FLEET / CATEGORIES ========== */
+        .fleet {
+            padding: 100px 0;
+            background: var(--gray-50);
+        }
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .fleet-card {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 24px 24px 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .fleet-card:hover {
+            border-color: var(--green);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-6px);
+        }
+        .fleet-card.popular::before {
+            content: 'Populaire';
+            position: absolute;
+            top: 16px;
+            right: -28px;
+            background: var(--green);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 36px;
+            transform: rotate(45deg);
+        }
+        .fleet-img-wrapper {
+            width: 100%;
+            height: 180px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .fleet-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .fleet-card:hover .fleet-img-wrapper img {
+            transform: scale(1.05);
+        }
+        .fleet-card h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+        .fleet-card .fleet-type {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        .fleet-price {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--green);
+            margin-bottom: 4px;
+        }
+        .fleet-price span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gray-500);
+        }
+        .fleet-features {
+            list-style: none;
+            margin-top: 24px;
+            text-align: left;
+        }
+        .fleet-features li {
+            padding: 8px 0;
+            font-size: 0.92rem;
+            color: var(--gray-700);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .fleet-features li i {
+            color: var(--green);
+            font-size: 0.8rem;
+        }
+
+        /* ========== HOW IT WORKS ========== */
+        .how-it-works {
+            padding: 100px 0;
+            background: #fff;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            position: relative;
+        }
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background: var(--gray-200);
+        }
+        .step {
+            text-align: center;
+            position: relative;
+        }
+        .step-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gray-50);
+            border: 3px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s;
+        }
+        .step:hover .step-number {
+            background: var(--green);
+            border-color: var(--green);
+            color: #fff;
+            transform: scale(1.1);
+        }
+        .step h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .step p {
+            font-size: 0.88rem;
+            color: var(--gray-500);
+        }
+
+        /* ========== STATS ========== */
+        .stats {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0a2e1a, #00A854);
+            position: relative;
+            overflow: hidden;
+        }
+        .stats::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            position: relative;
+            z-index: 1;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            font-weight: 900;
+            color: #fff;
+        }
+        .stat-label {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            margin-top: 4px;
+        }
+
+        /* ========== DOWNLOAD APP ========== */
+        .download {
+            padding: 100px 0;
+            background: var(--gray-50);
+        }
+        .download .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .download-content h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        .download-content p {
+            color: var(--gray-500);
+            font-size: 1.05rem;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+        .store-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--dark);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s;
+        }
+        .store-btn:hover { background: #2d2d4a; transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .store-btn i { font-size: 1.6rem; }
+        .store-btn-text { text-align: left; }
+        .store-btn-text small { font-size: 0.7rem; color: rgba(255,255,255,0.6); display: block; }
+        .store-btn-text strong { font-size: 1rem; }
+        .download-visual {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        .download-phone {
+            width: 260px;
+            height: 520px;
+            background: linear-gradient(145deg, #1a1a2e, #2d2d4a);
+            border-radius: 36px;
+            border: 3px solid rgba(255,255,255,0.08);
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        .download-phone-screen {
+            position: absolute;
+            inset: 8px;
+            border-radius: 28px;
+            background: linear-gradient(180deg, #00A854 0%, #008a44 50%, #00703a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            gap: 12px;
+        }
+        .download-phone-screen img {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+        }
+        .download-phone-screen .dl-title {
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .download-phone-screen .dl-sub {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.8rem;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .dl-mock-btn {
+            background: var(--yellow);
+            color: var(--dark);
+            font-weight: 700;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+        .dl-mock-map {
+            width: 100%;
+            flex: 1;
+            margin-top: 16px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .dl-mock-map::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 30% 40%, rgba(254,203,0,0.3) 0%, transparent 40%),
+                radial-gradient(circle at 70% 60%, rgba(0,168,84,0.3) 0%, transparent 40%);
+        }
+
+        /* ========== DRIVER CTA ========== */
+        .driver-cta {
+            padding: 100px 0;
+            background: #fff;
+        }
+        .driver-card {
+            background: linear-gradient(135deg, #0a2e1a, #00A854);
+            border-radius: 24px;
+            padding: 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .driver-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 60%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(254,203,0,0.08), transparent 60%);
+        }
+        .driver-content { position: relative; z-index: 1; }
+        .driver-content h2 {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+        .driver-content p {
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+        .driver-perks {
+            list-style: none;
+            position: relative;
+            z-index: 1;
+        }
+        .driver-perks li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .perk-icon {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--yellow);
+        }
+        .perk-text h4 { color: #fff; font-weight: 700; font-size: 0.95rem; margin-bottom: 2px; }
+        .perk-text p { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin: 0; }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: var(--dark);
+            color: #fff;
+            padding: 64px 0 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .footer-brand p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            margin-top: 12px;
+            line-height: 1.7;
+            max-width: 320px;
+        }
+        .footer-brand .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .footer-brand .footer-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .footer-brand .footer-logo span {
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+        .footer h4 {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.9);
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        .footer-links a {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--green); }
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .footer-social a:hover { background: var(--green); color: #fff; }
+        .footer-bottom {
+            padding: 24px 0;
+            text-align: center;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.85rem;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .hero .container { grid-template-columns: 1fr; text-align: center; padding-top: 120px; padding-bottom: 60px; }
+            .hero-content p { max-width: 100%; margin-left: auto; margin-right: auto; }
+            .hero-buttons { justify-content: center; }
+            .hero-badge { margin-left: auto; margin-right: auto; }
+            .hero-visual { display: none; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .fleet-grid { grid-template-columns: repeat(2, 1fr); }
+            .fleet-card:last-child { grid-column: span 2; max-width: 400px; margin: 0 auto; }
+            .steps { grid-template-columns: repeat(2, 1fr); }
+            .steps::before { display: none; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+            .download .container { grid-template-columns: 1fr; text-align: center; }
+            .download-visual { order: -1; }
+            .store-buttons { justify-content: center; }
+            .driver-card { grid-template-columns: 1fr; padding: 40px; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero .container { padding-top: 100px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .fleet-grid { grid-template-columns: 1fr; }
+            .fleet-card:last-child { grid-column: span 1; max-width: 100%; }
+            .steps { grid-template-columns: 1fr 1fr; gap: 24px; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .store-buttons { flex-direction: column; align-items: center; }
+            .driver-card { padding: 32px 24px; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-brand p { max-width: 100%; }
+            .footer-social { justify-content: center; }
+        }
+        /* ========== CHATBOT KHADIJA ========== */
+        .khadija-fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 900;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .khadija-fab-label {
+            background: #fff;
+            color: var(--dark);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-md);
+            white-space: nowrap;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+        .khadija-fab.chat-open .khadija-fab-label { opacity: 0; pointer-events: none; }
+        .khadija-fab-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, var(--green), var(--yellow));
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,168,84,0.4);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .khadija-fab-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 28px rgba(0,168,84,0.5);
+        }
+        .khadija-fab-btn.recording {
+            background: linear-gradient(135deg, var(--red), #ff4444);
+            box-shadow: 0 4px 20px rgba(227,6,19,0.5);
+            animation: khadija-pulse 1s ease-in-out infinite;
+        }
+        @keyframes khadija-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+        .khadija-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 16px;
+            height: 16px;
+            background: var(--red);
+            border-radius: 50%;
+            border: 2px solid #fff;
+            display: none;
+        }
+
+        /* Chat Modal */
+        .khadija-modal {
+            position: fixed;
+            bottom: 96px;
+            right: 24px;
+            width: 380px;
+            height: 520px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.2);
+            z-index: 901;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: khadija-slide-up 0.3s ease;
+        }
+        .khadija-modal.active { display: flex; }
+        @keyframes khadija-slide-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header */
+        .khadija-header {
+            background: linear-gradient(135deg, var(--green), var(--yellow));
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-height: 68px;
+        }
+        .khadija-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+        .khadija-header-info { flex: 1; }
+        .khadija-header-info h4 {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .khadija-header-info span {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.78rem;
+        }
+        .khadija-close {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.8);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px;
+            transition: color 0.2s;
+        }
+        .khadija-close:hover { color: #fff; }
+
+        /* Messages */
+        .khadija-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            background: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .khadija-msg {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 16px;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            animation: khadija-msg-in 0.3s ease;
+        }
+        @keyframes khadija-msg-in {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .khadija-msg.bot {
+            background: #fff;
+            color: var(--dark);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .khadija-msg.user {
+            background: linear-gradient(135deg, var(--green), #00c464);
+            color: #fff;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        .khadija-msg.bot .msg-listen {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: none;
+            border: none;
+            color: var(--green);
+            font-size: 0.75rem;
+            cursor: pointer;
+            margin-top: 6px;
+            padding: 2px 0;
+            font-family: inherit;
+        }
+        .khadija-msg.bot .msg-listen:hover { text-decoration: underline; }
+        .khadija-typing {
+            display: none;
+            align-self: flex-start;
+            padding: 12px 18px;
+            background: #fff;
+            border-radius: 16px;
+            border-bottom-left-radius: 4px;
+            gap: 5px;
+        }
+        .khadija-typing.active { display: flex; }
+        .khadija-typing span {
+            width: 7px;
+            height: 7px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: khadija-bounce 1.2s ease-in-out infinite;
+        }
+        .khadija-typing span:nth-child(2) { animation-delay: 0.15s; }
+        .khadija-typing span:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes khadija-bounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-6px); }
+        }
+
+        /* Input */
+        .khadija-input {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-top: 1px solid var(--gray-200);
+            background: #fff;
+        }
+        .khadija-input input {
+            flex: 1;
+            border: 1px solid var(--gray-200);
+            border-radius: 25px;
+            padding: 10px 16px;
+            font-size: 0.88rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .khadija-input input:focus { border-color: var(--green); }
+        .khadija-input button {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+        .khadija-mic-btn {
+            background: linear-gradient(135deg, var(--green), var(--yellow));
+            color: #fff;
+        }
+        .khadija-mic-btn.recording {
+            background: linear-gradient(135deg, var(--red), #ff4444);
+            animation: khadija-pulse 1s ease-in-out infinite;
+        }
+        .khadija-send-btn {
+            background: var(--green);
+            color: #fff;
+        }
+        .khadija-send-btn:hover { background: var(--green-dark); }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .khadija-modal {
+                bottom: 0;
+                right: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+            }
+            .khadija-fab { bottom: 16px; right: 16px; }
+            .khadija-fab-label { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="nav-brand">
+                <img src="https://i.imgur.com/VtgG6pR.png" alt="Al Bourakh">
+                <span>Al Bourakh</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#fleet">Flotte</a></li>
+                <li><a href="#how-it-works">Comment ça marche</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#download" class="nav-cta"><i class="fas fa-download"></i> Télécharger</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-close" onclick="toggleMobile()">&times;</div>
+        <a href="#services" onclick="toggleMobile()">Services</a>
+        <a href="#fleet" onclick="toggleMobile()">Flotte</a>
+        <a href="#how-it-works" onclick="toggleMobile()">Comment ça marche</a>
+        <a href="#download" onclick="toggleMobile()">Télécharger l'app</a>
+        <a href="#contact" onclick="toggleMobile()">Contact</a>
+    </div>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+        <div class="hero-grid"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-gift"></i> 500 FCFA offerts à l'inscription
+                </div>
+                <h1>Votre <span class="highlight">chauffeur privé</span> à Dakar</h1>
+                <p>Réservez un véhicule premium en quelques secondes. Paiement mobile intégré, chauffeurs vérifiés, service 24h/24.</p>
+                <div class="hero-buttons">
+                    <a href="#download" class="btn btn-primary"><i class="fas fa-mobile-screen"></i> Réserver maintenant</a>
+                    <a href="#driver" class="btn btn-outline"><i class="fas fa-car"></i> Devenir chauffeur</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-phone">
+                    <div class="hero-phone-screen">
+                        <img src="https://i.imgur.com/VtgG6pR.png" alt="Al Bourakh">
+                        <div class="phone-title">Al Bourakh</div>
+                        <div class="phone-subtitle">Transport VTC Premium</div>
+                        <div class="phone-card">
+                            <div class="phone-card-row">
+                                <div class="phone-card-dot"></div>
+                                <div class="phone-card-line"></div>
+                            </div>
+                            <div class="phone-card-row">
+                                <div class="phone-card-dot" style="background:#fff"></div>
+                                <div class="phone-card-line short"></div>
+                            </div>
+                        </div>
+                        <div class="phone-card">
+                            <div class="phone-card-row">
+                                <div class="phone-card-dot" style="background:var(--green)"></div>
+                                <div class="phone-card-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-float-card card-1">
+                    <div class="float-icon green"><i class="fas fa-shield-halved"></i></div>
+                    Chauffeurs vérifiés
+                </div>
+                <div class="hero-float-card card-2">
+                    <div class="float-icon yellow"><i class="fas fa-bolt"></i></div>
+                    Paiement instantané
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SERVICES ========== -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title reveal">Pourquoi choisir Al Bourakh ?</div>
+            <div class="section-subtitle reveal">La plateforme VTC qui comprend les besoins de Dakar</div>
+            <div class="services-grid">
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-icon green"><i class="fas fa-car-side"></i></div>
+                    <h3>Flotte Premium</h3>
+                    <p>150 véhicules entretenus et contrôlés régulièrement. Berlines, SUV et minivans à votre disposition.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-icon blue"><i class="fas fa-mobile-screen-button"></i></div>
+                    <h3>Réservation en 30s</h3>
+                    <p>Application intuitive. Entrez votre destination, choisissez votre véhicule, et c'est parti.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-3">
+                    <div class="service-icon yellow"><i class="fas fa-wallet"></i></div>
+                    <h3>Paiement flexible</h3>
+                    <p>Orange Money, Wave, Free Money ou espèces. Payez comme vous voulez, sans friction.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-icon red"><i class="fas fa-shield-halved"></i></div>
+                    <h3>Sécurité maximale</h3>
+                    <p>Chauffeurs vérifiés et formés. Suivi GPS en temps réel. Partagez votre trajet avec vos proches.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-icon purple"><i class="fas fa-clock"></i></div>
+                    <h3>Disponible 24/7</h3>
+                    <p>Jour et nuit, week-end et jours fériés. Un chauffeur est toujours disponible près de vous.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-3">
+                    <div class="service-icon teal"><i class="fas fa-building"></i></div>
+                    <h3>Solutions B2B</h3>
+                    <p>Forfaits entreprises, hôtels et ambassades. Facturation centralisée et chauffeurs dédiés.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FLEET ========== -->
+    <section class="fleet" id="fleet">
+        <div class="container">
+            <div class="section-title reveal">Notre flotte</div>
+            <div class="section-subtitle reveal">Trois catégories pour répondre à tous vos besoins</div>
+            <div class="fleet-grid">
+                <div class="fleet-card reveal reveal-delay-1">
+                    <div class="fleet-img-wrapper">
+                        <img src="https://images.pexels.com/photos/3786091/pexels-photo-3786091.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Berline Standard Al Bourakh" loading="lazy">
+                    </div>
+                    <h3>Standard</h3>
+                    <div class="fleet-type">Berline économique</div>
+                    <div class="fleet-price"><span>à partir de</span> 500 <span>FCFA</span></div>
+                    <ul class="fleet-features">
+                        <li><i class="fas fa-check"></i> Confortable et climatisé</li>
+                        <li><i class="fas fa-check"></i> Idéal pour les trajets quotidiens</li>
+                        <li><i class="fas fa-check"></i> 4 passagers max</li>
+                        <li><i class="fas fa-check"></i> Wi-Fi disponible</li>
+                    </ul>
+                </div>
+                <div class="fleet-card popular reveal reveal-delay-2">
+                    <div class="fleet-img-wrapper">
+                        <img src="https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Berline Confort Al Bourakh" loading="lazy">
+                    </div>
+                    <h3>Confort</h3>
+                    <div class="fleet-type">Berline haut de gamme</div>
+                    <div class="fleet-price"><span>à partir de</span> 750 <span>FCFA</span></div>
+                    <ul class="fleet-features">
+                        <li><i class="fas fa-check"></i> Véhicule premium récent</li>
+                        <li><i class="fas fa-check"></i> Parfait pour le business</li>
+                        <li><i class="fas fa-check"></i> 4 passagers max</li>
+                        <li><i class="fas fa-check"></i> Eau et chargeurs fournis</li>
+                    </ul>
+                </div>
+                <div class="fleet-card reveal reveal-delay-3">
+                    <div class="fleet-img-wrapper">
+                        <img src="https://images.pexels.com/photos/1519192/pexels-photo-1519192.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Van SUV Al Bourakh" loading="lazy">
+                    </div>
+                    <h3>Van</h3>
+                    <div class="fleet-type">Minivan / SUV 7-8 places</div>
+                    <div class="fleet-price"><span>à partir de</span> 1 000 <span>FCFA</span></div>
+                    <ul class="fleet-features">
+                        <li><i class="fas fa-check"></i> Espace généreux</li>
+                        <li><i class="fas fa-check"></i> Groupes et familles</li>
+                        <li><i class="fas fa-check"></i> 7-8 passagers max</li>
+                        <li><i class="fas fa-check"></i> Transferts aéroport</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== HOW IT WORKS ========== -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-title reveal">Comment ça marche ?</div>
+            <div class="section-subtitle reveal">Votre course en 4 étapes simples</div>
+            <div class="steps">
+                <div class="step reveal reveal-delay-1">
+                    <div class="step-number"><i class="fas fa-download"></i></div>
+                    <h3>Téléchargez</h3>
+                    <p>Installez l'app Al Bourakh depuis le Play Store ou l'App Store</p>
+                </div>
+                <div class="step reveal reveal-delay-2">
+                    <div class="step-number"><i class="fas fa-location-dot"></i></div>
+                    <h3>Destination</h3>
+                    <p>Entrez votre adresse de départ et votre destination</p>
+                </div>
+                <div class="step reveal reveal-delay-3">
+                    <div class="step-number"><i class="fas fa-car"></i></div>
+                    <h3>Choisissez</h3>
+                    <p>Sélectionnez Standard, Confort ou Van selon vos besoins</p>
+                </div>
+                <div class="step reveal reveal-delay-4">
+                    <div class="step-number"><i class="fas fa-face-smile"></i></div>
+                    <h3>Profitez</h3>
+                    <p>Installez-vous et laissez votre chauffeur s'occuper du reste</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== STATS ========== -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item reveal reveal-delay-1">
+                    <div class="stat-number" data-target="150">0</div>
+                    <div class="stat-label">Véhicules</div>
+                </div>
+                <div class="stat-item reveal reveal-delay-2">
+                    <div class="stat-number" data-target="5">0</div>
+                    <div class="stat-label">Applications</div>
+                </div>
+                <div class="stat-item reveal reveal-delay-3">
+                    <div class="stat-number" data-target="24" data-suffix="/7">0</div>
+                    <div class="stat-label">Disponibilité</div>
+                </div>
+                <div class="stat-item reveal reveal-delay-4">
+                    <div class="stat-number" data-target="3">0</div>
+                    <div class="stat-label">Catégories de véhicules</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DOWNLOAD APP ========== -->
+    <section class="download" id="download">
+        <div class="container">
+            <div class="download-content reveal">
+                <h2>Téléchargez l'application Al Bourakh</h2>
+                <p>Réservez votre chauffeur privé en quelques secondes. Disponible sur Android et iOS. Profitez de 500 FCFA de crédit offerts à votre première inscription.</p>
+                <div class="store-buttons">
+                    <a href="#" class="store-btn">
+                        <i class="fab fa-google-play"></i>
+                        <div class="store-btn-text">
+                            <small>Télécharger sur</small>
+                            <strong>Google Play</strong>
+                        </div>
+                    </a>
+                    <a href="#" class="store-btn">
+                        <i class="fab fa-apple"></i>
+                        <div class="store-btn-text">
+                            <small>Télécharger sur</small>
+                            <strong>App Store</strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="download-visual reveal">
+                <div class="download-phone">
+                    <div class="download-phone-screen">
+                        <img src="https://i.imgur.com/VtgG6pR.png" alt="Al Bourakh">
+                        <div class="dl-title">Al Bourakh</div>
+                        <div class="dl-sub">Votre chauffeur privé à Dakar</div>
+                        <div class="dl-mock-btn">Réserver maintenant</div>
+                        <div class="dl-mock-map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DRIVER CTA ========== -->
+    <section class="driver-cta" id="driver">
+        <div class="container">
+            <div class="driver-card reveal">
+                <div class="driver-content">
+                    <h2>Devenez chauffeur partenaire Al Bourakh</h2>
+                    <p>Rejoignez notre réseau de chauffeurs premium et bénéficiez d'avantages exclusifs pour développer votre activité.</p>
+                    <a href="#" class="btn btn-primary" style="background: var(--yellow); color: var(--dark);">
+                        <i class="fas fa-paper-plane"></i> Postuler maintenant
+                    </a>
+                </div>
+                <ul class="driver-perks">
+                    <li>
+                        <div class="perk-icon"><i class="fas fa-car"></i></div>
+                        <div class="perk-text">
+                            <h4>Accès véhicule</h4>
+                            <p>Programme location-vente : devenez propriétaire en 48 mois</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="perk-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="perk-text">
+                            <h4>Formation complète</h4>
+                            <p>Formation gratuite à notre application et au service premium</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="perk-icon"><i class="fas fa-money-bill-wave"></i></div>
+                        <div class="perk-text">
+                            <h4>Revenus réguliers</h4>
+                            <p>Commission attractive et paiements hebdomadaires garantis</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="perk-icon"><i class="fas fa-headset"></i></div>
+                        <div class="perk-text">
+                            <h4>Support 24/7</h4>
+                            <p>Assistance dédiée et communauté de chauffeurs solidaires</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="https://i.imgur.com/VtgG6pR.png" alt="Al Bourakh">
+                        <span>Al Bourakh</span>
+                    </div>
+                    <p>Plateforme de transport VTC premium au Sénégal. Mobilité urbaine fiable, sécurisée et de qualité à Dakar.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Liens rapides</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#fleet">Notre flotte</a></li>
+                        <li><a href="#how-it-works">Comment ça marche</a></li>
+                        <li><a href="#download">Télécharger</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Entreprise</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#driver">Devenir chauffeur</a></li>
+                        <li><a href="#">Partenaires B2B</a></li>
+                        <li><a href="#">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+221787850101"><i class="fas fa-phone" style="margin-right:8px;color:var(--green)"></i>+221 78 785 01 01</a></li>
+                        <li><a href="mailto:admin@albourakh.sn"><i class="fas fa-envelope" style="margin-right:8px;color:var(--green)"></i>admin@albourakh.sn</a></li>
+                        <li><a href="#"><i class="fas fa-location-dot" style="margin-right:8px;color:var(--green)"></i>Dakar, Sénégal</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 Al Bourakh. Tous droits réservés. Fait avec <span style="color:var(--red)">&#10084;</span> à Dakar
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== CHATBOT KHADIJA ========== -->
+    <div class="khadija-fab" id="khadijaFab">
+        <div class="khadija-fab-label">Parler avec Khadija</div>
+        <button class="khadija-fab-btn" id="khadijaFabBtn" onclick="toggleKhadija()" title="Parler avec Khadija">
+            <i class="fas fa-comment-dots" id="khadijaFabIcon"></i>
+            <div class="khadija-badge" id="khadijaBadge"></div>
+        </button>
+    </div>
+
+    <div class="khadija-modal" id="khadijaModal">
+        <div class="khadija-header">
+            <div class="khadija-avatar">&#x1F469;&#x1F3FE;</div>
+            <div class="khadija-header-info">
+                <h4>Khadija</h4>
+                <span>Assistante Al Bourakh VTC</span>
+            </div>
+            <button class="khadija-close" onclick="toggleKhadija()"><i class="fas fa-xmark"></i></button>
+        </div>
+        <div class="khadija-messages" id="khadijaMessages"></div>
+        <div class="khadija-input">
+            <button class="khadija-mic-btn" id="khadijaMicBtn" onclick="toggleVoice()" title="Commande vocale">
+                <i class="fas fa-microphone"></i>
+            </button>
+            <input type="text" id="khadijaInput" placeholder="Posez une question..." onkeydown="if(event.key==='Enter')sendMessage()">
+            <button class="khadija-send-btn" onclick="sendMessage()" title="Envoyer">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // --- Navbar scroll effect ---
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // --- Mobile menu ---
+        function toggleMobile() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        // --- Scroll reveal animations ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- Counter animation ---
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.target);
+                    const suffix = el.dataset.suffix || '';
+                    let current = 0;
+                    const step = Math.max(1, Math.floor(target / 40));
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        el.textContent = current + suffix;
+                    }, 30);
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-number').forEach(el => counterObserver.observe(el));
+
+        // --- Smooth scroll for anchor links ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    const offset = 80;
+                    const pos = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top: pos, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ========== CHATBOT KHADIJA ==========
+        const KHADIJA_WEBHOOK = 'https://mmdrame2017.app.n8n.cloud/webhook/al-bourakh-chat';
+        const khadijaSessionId = 'landing-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8);
+        let khadijaOpen = false;
+        let khadijaFirstOpen = true;
+        let khadijaRecording = false;
+        let khadijaRecognition = null;
+
+        // Toggle chat modal
+        function toggleKhadija() {
+            khadijaOpen = !khadijaOpen;
+            const modal = document.getElementById('khadijaModal');
+            const fab = document.getElementById('khadijaFab');
+            const icon = document.getElementById('khadijaFabIcon');
+            const badge = document.getElementById('khadijaBadge');
+
+            if (khadijaOpen) {
+                modal.classList.add('active');
+                fab.classList.add('chat-open');
+                icon.className = 'fas fa-xmark';
+                badge.style.display = 'none';
+                if (khadijaFirstOpen) {
+                    khadijaFirstOpen = false;
+                    const welcomeMsg = "Bonjour ! \ud83d\udc4b Je suis Khadija, votre assistante Al Bourakh. Je peux vous aider \u00e0 :\n\n\u2022 Calculer le tarif d'une course\n\u2022 D\u00e9couvrir nos services\n\u2022 R\u00e9pondre \u00e0 vos questions\n\nComment puis-je vous aider ?";
+                    addBotMessage(welcomeMsg);
+                    setTimeout(() => speakText(document.querySelector('.khadija-msg.bot')), 300);
+                }
+                document.getElementById('khadijaInput').focus();
+            } else {
+                modal.classList.remove('active');
+                fab.classList.remove('chat-open');
+                icon.className = 'fas fa-comment-dots';
+            }
+        }
+
+        // Add bot message
+        function addBotMessage(text) {
+            const messages = document.getElementById('khadijaMessages');
+            const div = document.createElement('div');
+            div.className = 'khadija-msg bot';
+            const formatted = text.replace(/\n/g, '<br>');
+            div.innerHTML = formatted + '<br><button class="msg-listen" onclick="speakText(this.parentElement)"><i class="fas fa-volume-up"></i> \u00c9couter</button>';
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        // Add user message
+        function addUserMessage(text) {
+            const messages = document.getElementById('khadijaMessages');
+            const div = document.createElement('div');
+            div.className = 'khadija-msg user';
+            div.textContent = text;
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        // Show/hide typing indicator
+        function showTyping(show) {
+            let typing = document.getElementById('khadijaTyping');
+            if (!typing) {
+                typing = document.createElement('div');
+                typing.className = 'khadija-typing';
+                typing.id = 'khadijaTyping';
+                typing.innerHTML = '<span></span><span></span><span></span>';
+                document.getElementById('khadijaMessages').appendChild(typing);
+            }
+            typing.classList.toggle('active', show);
+            if (show) {
+                document.getElementById('khadijaMessages').scrollTop = document.getElementById('khadijaMessages').scrollHeight;
+            }
+        }
+
+        // Send message
+        async function sendMessage() {
+            const input = document.getElementById('khadijaInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            input.value = '';
+            addUserMessage(text);
+            showTyping(true);
+
+            try {
+                const res = await fetch(KHADIJA_WEBHOOK, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sessionId: khadijaSessionId,
+                        message: text,
+                        audio: '',
+                        wantAudio: false,
+                        walletBalance: 0,
+                        userPhone: '',
+                        userPosition: 'Landing page',
+                        platform: 'landing'
+                    })
+                });
+                const data = await res.json();
+                showTyping(false);
+                const reply = data.text || data.output || (typeof data === 'string' ? data : "Merci pour votre message. T\u00e9l\u00e9chargez notre app pour r\u00e9server un VTC !");
+                addBotMessage(reply);
+                // Auto-lecture vocale de la réponse
+                const lastMsg = document.querySelector('.khadija-messages .khadija-msg.bot:last-child');
+                if (lastMsg) setTimeout(() => speakText(lastMsg), 300);
+            } catch (err) {
+                showTyping(false);
+                addBotMessage("D\u00e9sol\u00e9, je suis momentan\u00e9ment indisponible. Appelez-nous au +221 78 785 01 01 ou t\u00e9l\u00e9chargez notre application.");
+                // Auto-lecture du message d'erreur aussi
+                const lastMsg = document.querySelector('.khadija-messages .khadija-msg.bot:last-child');
+                if (lastMsg) setTimeout(() => speakText(lastMsg), 300);
+            }
+        }
+
+        // Text-to-Speech
+        function speakText(msgEl) {
+            if (!window.speechSynthesis) return;
+            window.speechSynthesis.cancel();
+            let text = msgEl.innerText.replace(/\s*[🔊]?\s*Écouter\s*$/i, '').trim();
+            text = text.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '');
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'fr-FR';
+            utterance.rate = 1;
+            const voices = speechSynthesis.getVoices();
+            const frVoice = voices.find(v => v.lang.startsWith('fr'));
+            if (frVoice) utterance.voice = frVoice;
+            speechSynthesis.speak(utterance);
+        }
+
+        // Voice recognition (STT)
+        function toggleVoice() {
+            const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRec) {
+                alert('La reconnaissance vocale n\'est pas support\u00e9e par votre navigateur. Utilisez Chrome ou Edge.');
+                return;
+            }
+
+            const micBtn = document.getElementById('khadijaMicBtn');
+            const fabBtn = document.getElementById('khadijaFabBtn');
+
+            if (khadijaRecording) {
+                khadijaRecognition.stop();
+                return;
+            }
+
+            khadijaRecognition = new SpeechRec();
+            khadijaRecognition.lang = 'fr-FR';
+            khadijaRecognition.continuous = false;
+            khadijaRecognition.maxAlternatives = 1;
+
+            khadijaRecording = true;
+            micBtn.classList.add('recording');
+            fabBtn.classList.add('recording');
+
+            khadijaRecognition.onresult = (e) => {
+                const transcript = e.results[0][0].transcript;
+                document.getElementById('khadijaInput').value = transcript;
+                sendMessage();
+            };
+
+            khadijaRecognition.onend = () => {
+                khadijaRecording = false;
+                micBtn.classList.remove('recording');
+                fabBtn.classList.remove('recording');
+            };
+
+            khadijaRecognition.onerror = () => {
+                khadijaRecording = false;
+                micBtn.classList.remove('recording');
+                fabBtn.classList.remove('recording');
+            };
+
+            khadijaRecognition.start();
+
+            if (!khadijaOpen) toggleKhadija();
+        }
+
+        // Load voices for TTS
+        if (window.speechSynthesis) {
+            speechSynthesis.getVoices();
+            speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+        }
+
+        // Auto-show label tooltip, then hide after 5s
+        setTimeout(() => {
+            const label = document.querySelector('.khadija-fab-label');
+            if (label) label.style.opacity = '0';
+        }, 6000);
+    </script>
+</body>
+</html>
