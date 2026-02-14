@@ -1841,7 +1841,11 @@
             const messages = document.getElementById('khadijaMessages');
             const div = document.createElement('div');
             div.className = 'khadija-msg bot';
-            const formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+            const formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>').replace(/(\+?221[\s]?)?(\d{2}[\s]?\d{3}[\s]?\d{2}[\s]?\d{2})/g, (m) => {
+                const clean = m.replace(/\s/g, '');
+                const tel = clean.startsWith('+') ? clean : (clean.startsWith('221') ? '+' + clean : '+221' + clean);
+                return `<a href="tel:${tel}" style="color:var(--green);text-decoration:underline">${m}</a>`;
+            });
             div.innerHTML = formatted + '<br><button class="msg-listen" onclick="speakText(this.parentElement)"><i class="fas fa-volume-up"></i> \u00c9couter</button>';
             messages.appendChild(div);
             messages.scrollTop = messages.scrollHeight;
