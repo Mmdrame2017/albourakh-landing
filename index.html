@@ -883,6 +883,10 @@
             transition: color 0.3s;
         }
         .footer-links a:hover { color: var(--green); }
+        .footer-links a[href^="tel:"],
+        .footer-links a[href^="mailto:"] { cursor: pointer; color: rgba(255,255,255,0.7); }
+        .footer-links a[href^="tel:"]:hover,
+        .footer-links a[href^="mailto:"]:hover { color: var(--green); text-decoration: underline; }
         .footer-social {
             display: flex;
             gap: 12px;
