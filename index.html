@@ -621,6 +621,33 @@
             color: var(--gray-500);
         }
 
+        /* ========== VIDEO DEMO ========== */
+        .demo-video-wrapper {
+            margin-top: 56px;
+            text-align: center;
+        }
+        .demo-video-wrapper .video-label {
+            font-size: 1rem;
+            color: var(--gray-500);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        .demo-video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            background: #000;
+        }
+        .demo-video-container video {
+            width: 100%;
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .demo-video-container { max-width: 100%; border-radius: var(--radius-sm); }
+        }
+
         /* ========== STATS ========== */
         .stats {
             padding: 80px 0;
@@ -1407,6 +1434,16 @@
                     <div class="step-number"><i class="fas fa-face-smile"></i></div>
                     <h3>Profitez</h3>
                     <p>Installez-vous et laissez votre chauffeur s'occuper du reste</p>
+                </div>
+            </div>
+
+            <!-- Video demo -->
+            <div class="demo-video-wrapper reveal">
+                <p class="video-label"><i class="fas fa-play-circle"></i> Voir la démonstration en vidéo</p>
+                <div class="demo-video-container">
+                    <video autoplay muted loop playsinline>
+                        <source src="booking-demo.mp4" type="video/mp4">
+                    </video>
                 </div>
             </div>
         </div>
